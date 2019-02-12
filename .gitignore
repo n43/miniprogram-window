@@ -1,0 +1,10 @@
+.DS_Store
+*.log
+package-lock.json
+node_modules/
+dist/
+lib/
+es/
+coverage/
+miniprogram_dist/
+miniprogram_npm/
