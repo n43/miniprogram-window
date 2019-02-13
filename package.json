@@ -1,6 +1,6 @@
 {
   "name": "miniprogram-window",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "license": "MIT",
   "repository": {
@@ -8,8 +8,6 @@
     "url": "https://github.com/n43/miniprogram-window.git"
   },
   "author": "ccchen",
-  "main": "lib/miniprogram-window.js",
-  "module": "es/miniprogram-window.js",
   "files": [
     "miniprogram_dist",
     "src"
