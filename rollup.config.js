@@ -24,34 +24,6 @@ const babelConfig = {
 };
 
 module.exports = [
-  // CommonJS
-  {
-    input: "src/index.js",
-    output: {
-      file: "lib/miniprogram-platform.js",
-      format: "cjs"
-    },
-    external: [
-      ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {})
-    ],
-    plugins: [babel(babelConfig)]
-  },
-
-  // ES
-  {
-    input: "src/index.js",
-    output: {
-      file: "es/miniprogram-platform.js",
-      format: "es"
-    },
-    external: [
-      ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {})
-    ],
-    plugins: [babel(babelConfig)]
-  },
-
   // Miniprogram
   {
     input: "src/index.js",
@@ -64,9 +36,6 @@ module.exports = [
         jsnext: true
       }),
       babel(babelConfig),
-      replace({
-        "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
-      }),
       terser({
         compress: {
           pure_getters: true,
