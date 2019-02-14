@@ -41,17 +41,10 @@ index.wxml
 
 #### navigationBarColor
 设置页面导航条颜色
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
-
 
 格式 | 设置项   | tips
 ----| ------  |---
-
 #e0b790 | backgroundColor
-
 #e0b790 #ffffff | backgroundColor frontColor | frontColor仅支持 #ffffff 和 #000000
 
 #### backgroundColor
