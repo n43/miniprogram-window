@@ -52,9 +52,9 @@ index.wxml
 
 格式 | 设置项  
 ----| ------  
-#e0b790 | backgroundColor
-#e0b790 #e0b790 | backgroundColor backgroundColorTop
-#e0b790 #e0b790 #fafafa | backgroundColor backgroundColorTop backgroundColorBottom
+"#e0b790" | backgroundColor
+"#e0b790 #e0b790" | backgroundColor backgroundColorTop
+"#e0b790 #e0b790 #fafafa" | backgroundColor backgroundColorTop backgroundColorBottom
 
 #### backgroundTextStyle
 动态设置下拉背景字体、loading 图的样式
