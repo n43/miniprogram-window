@@ -43,7 +43,7 @@ index.wxml
 设置页面导航条颜色
 格式 | 设置项 | tips
 ---|---|---
-#e0b790 | backgroundColor | 
+#e0b790 | backgroundColor
 #e0b790 #ffffff | backgroundColor frontColor | frontColor仅支持 #ffffff 和 #000000
 
 #### backgroundColor
