@@ -46,6 +46,7 @@ index.wxml
 ---|---|---
 
 #e0b790 | backgroundColor
+
 #e0b790 #ffffff | backgroundColor frontColor | frontColor仅支持 #ffffff 和 #000000
 
 #### backgroundColor
