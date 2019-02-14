@@ -49,6 +49,7 @@ index.wxml
 
 #### backgroundColor
 设置窗口的背景色
+
 格式 | 设置项  
 ----| ------  
 #e0b790 | backgroundColor
