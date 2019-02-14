@@ -1,5 +1,5 @@
 # miniprogram-window
-A wechat miniprogram component which aims to set window options in pages 
+A page window options manager for Wechat Miniprogram  
 
 ## Installation
 ```
