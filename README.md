@@ -49,8 +49,8 @@ index.wxml
 
 #### backgroundColor
 设置窗口的背景色
-格式 | 设置项
-----| ---
+格式 | 设置项  
+----| ------  
 #e0b790 | backgroundColor
 #e0b790 #e0b790 | backgroundColor backgroundColorTop
 #e0b790 #e0b790 #fafafa | backgroundColor backgroundColorTop backgroundColorBottom
