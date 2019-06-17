@@ -163,7 +163,7 @@ Component({
           const pages = getCurrentPages();
           const topPageRoute = pages[pages.length - 1];
 
-          if (topPageRoute.__wxWebviewId__ === webviewId) {
+          if (topPageRoute && topPageRoute.__wxWebviewId__ === webviewId) {
             this.emitChange();
           }
         }, 0);
