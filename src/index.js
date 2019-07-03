@@ -1,56 +1,60 @@
-let mountedInstances = {};
+const { miniprogramWindow } = require('./provider');
 
 Component({
   properties: {
     title: {
       type: String,
-      value: "",
-      observer: "propChange"
+      value: '',
+      observer: 'propChange',
     },
     navigationBarColor: {
       type: String,
-      value: "",
-      observer: "propChange"
+      value: '',
+      observer: 'propChange',
     },
     backgroundColor: {
       type: String,
-      value: "",
-      observer: "propChange"
+      value: '',
+      observer: 'propChange',
     },
     backgroundTextStyle: {
       type: String,
-      value: "",
-      observer: "propChange"
-    }
+      value: '',
+      observer: 'propChange',
+    },
+    shareContent: {
+      type: Object,
+      value: null,
+    },
   },
   lifetimes: {
     created() {
       this.emitChange = () => {
-        const defAttrs = getApp().WINDOW_DEFAULT;
+        const defAttrs = miniprogramWindow.defaultAttrs;
         const attrs = this.getMountedAttrs();
         let navigationBarOptions = {};
         let backgroundColorOptions = {};
-        let backgroundTextStyle = "";
+        let backgroundTextStyle = '';
 
         if (attrs.navigationBarColor) {
           let { navigationBarColor } = attrs;
-          navigationBarColor = navigationBarColor.split(" ");
+          navigationBarColor = navigationBarColor.split(' ');
           let [backgroundColor, frontColor] = navigationBarColor;
 
           navigationBarOptions.backgroundColor = backgroundColor;
 
-          if (frontColor === "#ffffff" || frontColor === "#000000") {
+          if (frontColor === '#ffffff' || frontColor === '#000000') {
             navigationBarOptions.frontColor = frontColor;
           }
         }
 
         if (attrs.backgroundColor) {
           let { backgroundColor } = attrs;
-          backgroundColor = backgroundColor.split(" ");
+          backgroundColor = backgroundColor.split(' ');
           const [
             normalBackgroundColor,
             backgroundColorTop,
-            backgroundColorBottom
+            backgroundColorBottom,
           ] = backgroundColor;
 
           backgroundColorOptions.backgroundColor = normalBackgroundColor;
@@ -65,8 +69,8 @@ Component({
         }
 
         if (
-          attrs.backgroundTextStyle === "dark" ||
-          attrs.backgroundTextStyle === "light"
+          attrs.backgroundTextStyle === 'dark' ||
+          attrs.backgroundTextStyle === 'light'
         ) {
           backgroundTextStyle = attrs.backgroundTextStyle;
         }
@@ -75,19 +79,20 @@ Component({
         wx.setNavigationBarColor({
           ...defAttrs.navigationBarColor,
           ...navigationBarOptions,
-          animation: { duration: 0 }
+          animation: { duration: 0 },
         });
         wx.setBackgroundColor({
           ...defAttrs.backgroundColor,
-          ...backgroundColorOptions
+          ...backgroundColorOptions,
         });
         wx.setBackgroundTextStyle({
-          textStyle: backgroundTextStyle || defAttrs.backgroundTextStyle
+          textStyle: backgroundTextStyle || defAttrs.backgroundTextStyle,
         });
       };
 
       this.getMountedAttrs = () => {
         const webviewId = this.__wxWebviewId__;
+        const mountedInstances = miniprogramWindow.mountedInstances;
         const mountedList = mountedInstances[webviewId];
         let attrs = {};
 
@@ -99,25 +104,25 @@ Component({
           const instance = mountedList[idx];
           let completed = true;
           if (attrs.title === undefined) {
-            if (instance.data.title !== "") {
+            if (instance.data.title !== '') {
               attrs.title = instance.data.title;
             }
             completed = false;
           }
           if (attrs.navigationBarColor === undefined) {
-            if (instance.data.navigationBarColor !== "") {
+            if (instance.data.navigationBarColor !== '') {
               attrs.navigationBarColor = instance.data.navigationBarColor;
             }
             completed = false;
           }
           if (attrs.backgroundColor === undefined) {
-            if (instance.data.backgroundColor !== "") {
+            if (instance.data.backgroundColor !== '') {
               attrs.backgroundColor = instance.data.backgroundColor;
             }
             completed = false;
           }
           if (attrs.backgroundTextStyle === undefined) {
-            if (instance.data.backgroundTextStyle !== "") {
+            if (instance.data.backgroundTextStyle !== '') {
               attrs.backgroundTextStyle = instance.data.backgroundTextStyle;
             }
             completed = false;
@@ -134,6 +139,7 @@ Component({
 
     attached() {
       const webviewId = this.__wxWebviewId__;
+      const mountedInstances = miniprogramWindow.mountedInstances;
 
       if (!mountedInstances[webviewId]) {
         mountedInstances[webviewId] = [];
@@ -149,6 +155,7 @@ Component({
 
     detached() {
       const webviewId = this.__wxWebviewId__;
+      const mountedInstances = miniprogramWindow.mountedInstances;
       const mountedList = mountedInstances[webviewId];
 
       mountedList.splice(mountedList.indexOf(this), 1);
@@ -170,13 +177,13 @@ Component({
       }
 
       this.componentReady = false;
-    }
+    },
   },
   methods: {
     propChange() {
       if (this.componentReady) {
         this.emitChange();
       }
-    }
-  }
+    },
+  },
 });

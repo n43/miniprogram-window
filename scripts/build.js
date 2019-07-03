@@ -26,3 +26,6 @@ fs.copySync(paths.appSrc, paths.appDist, {
 });
 
 cp.execSync("rollup -c", { stdio: "inherit" });
+cp.execSync("rollup -c -i src/provider.js -o miniprogram_dist/provider.js", {
+  stdio: "inherit"
+});

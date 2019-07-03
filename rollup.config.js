@@ -1,8 +1,6 @@
 const nodeResolve = require("rollup-plugin-node-resolve");
 const babel = require("rollup-plugin-babel");
-const replace = require("rollup-plugin-replace");
 const { terser } = require("rollup-plugin-terser");
-const pkg = require("./package.json");
 
 const babelConfig = {
   babelrc: false,
