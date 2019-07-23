@@ -56,9 +56,11 @@ index.js
 ```
 const { getShareContent } = require('miniprogram-window/provider');
 
-onShareAppMessage() {
-  return getShareContent(this);
-}
+Page({
+  onShareAppMessage() {
+    return getShareContent(this);
+  }
+})
 ```
 
 ## Properties
