@@ -1,26 +1,41 @@
 # miniprogram-window
-A page window options manager for Wechat Miniprogram  
+
+A page window options manager for Wechat Miniprogram
 
 ## Installation
+
 ```
 npm install --save miniprogram-window
 ```
+
 ## Usage
+
 app.js
+
 ```
+const { initWindow } = require('miniprogram-window/provider');
 App(
-   WINDOW_DEFAULT: {
-      title: '默认页面标题',
-      backgroundColor: { backgroundColor: '#ffffff' },
-      navigationBarColor: {
-        frontColor: '#000000',
-        backgroundColor: '#ffffff',
-      },
-      backgroundTextStyle: 'dark',
-   },
+    onLaunch() {
+      initWindow({
+        title: '默认标题',
+        backgroundColor: { backgroundColor: '#ffffff' },
+        navigationBarColor: {
+          frontColor: '#000000',
+          backgroundColor: '#ffffff',
+        },
+        backgroundTextStyle: 'dark',
+        shareContent: {
+          title: '分享默认标题',
+          imageUrl: '分享默认图片',
+          path: '分享默认路径',
+        },
+      });
+    },
 )
 ```
+
 index.json
+
 ```
 {
   "enablePullDownRefresh": true,
@@ -29,33 +44,51 @@ index.json
   }
 }
 ```
+
 index.wxml
+
 ```
 <window title="首页" navigationBarColor="#e0b790 #ffffff" backgroundColor="#e0b790 #e0b790 #fafafa" backgroundTextStyle="light" />
 ```
 
+index.js
+
+```
+const { getShareContent } = require('miniprogram-window/provider');
+
+onShareAppMessage() {
+  return getShareContent(this);
+}
+```
+
 ## Properties
-所有属性均为非必填项，不填写时将使用WINDOW_DEFAULT指定的默认值
+
+所有属性均为非必填项，不填写时将使用 WINDOW_DEFAULT 指定的默认值
+
 ### title
+
 设置当前页面的标题
 
 ### navigationBarColor
+
 设置页面导航条颜色
 
-格式 | 设置项   | tips
-----| ------  |---
-"#e0b790" | backgroundColor
-"#e0b790 #ffffff" | backgroundColor frontColor | frontColor仅支持 #ffffff 和 #000000
+| 格式              | 设置项                     | tips                                 |
+| ----------------- | -------------------------- | ------------------------------------ |
+| "#e0b790"         | backgroundColor            |
+| "#e0b790 #ffffff" | backgroundColor frontColor | frontColor 仅支持 #ffffff 和 #000000 |
 
 ### backgroundColor
+
 设置窗口的背景色
 
-格式 | 设置项  
-----| ------  
-"#e0b790" | backgroundColor
-"#e0b790 #e0b790" | backgroundColor backgroundColorTop
-"#e0b790 #e0b790 #fafafa" | backgroundColor backgroundColorTop backgroundColorBottom
+| 格式                      | 设置项                                                   |
+| ------------------------- | -------------------------------------------------------- |
+| "#e0b790"                 | backgroundColor                                          |
+| "#e0b790 #e0b790"         | backgroundColor backgroundColorTop                       |
+| "#e0b790 #e0b790 #fafafa" | backgroundColor backgroundColorTop backgroundColorBottom |
 
 ### backgroundTextStyle
+
 动态设置下拉背景字体、loading 图的样式
-仅支持light或dark
+仅支持 light 或 dark
