@@ -45,22 +45,27 @@ index.json
 }
 ```
 
-index.wxml
-
-```
-<window title="首页" navigationBarColor="#e0b790 #ffffff" backgroundColor="#e0b790 #e0b790 #fafafa" backgroundTextStyle="light" />
-```
-
 index.js
 
 ```
 const { getShareContent } = require('miniprogram-window/provider');
 
 Page({
+  data:{
+    shareContent:{
+      title: "首页“
+    }
+  },
   onShareAppMessage() {
     return getShareContent(this);
   }
 })
+```
+
+index.wxml
+
+```
+<window title="首页" navigationBarColor="#e0b790 #ffffff" backgroundColor="#e0b790 #e0b790 #fafafa" backgroundTextStyle="light" shareContent="{{shareContent}}"/>
 ```
 
 ## Properties
