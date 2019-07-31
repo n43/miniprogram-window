@@ -1,19 +1,25 @@
 let miniprogramWindow = {};
 
-module.exports.initWindow = function(defaultAttrs) {
+module.exports.initWindow = function(defaultAttrs, options) {
   miniprogramWindow.defaultAttrs = defaultAttrs;
+  miniprogramWindow.options = options;
   miniprogramWindow.mountedInstances = {};
 };
 
 module.exports.getShareContent = function(context) {
   const webviewId = context.__wxWebviewId__;
-  const { mountedInstances, defaultAttrs } = miniprogramWindow;
+  const { mountedInstances, options } = miniprogramWindow;
+  const { shareContentGetter } = options;
   const mountedList = mountedInstances[webviewId];
 
-  return (
-    mountedList[mountedList.length - 1].data.shareContent ||
-    defaultAttrs.shareContent
-  );
+  const latestShareContent =
+    mountedList[mountedList.length - 1].data.shareContent || null;
+
+  if (shareContentGetter) {
+    return shareContentGetter(latestShareContent);
+  }
+
+  return latestShareContent;
 };
 
 module.exports.miniprogramWindow = miniprogramWindow;
